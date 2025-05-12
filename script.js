@@ -22,7 +22,7 @@ async function fetchWeather(city) {
 
     updateUI(data);
     updateMap(data.location.lat, data.location.lon, data);
-    updateWeatherOverlay(currentOverlay);
+    // updateWeatherOverlay(currentOverlay);
     lastCity = city;
   } catch (error) {
     console.error("Error fetching weather data:", error);
@@ -202,26 +202,6 @@ function updateMap(lat, lon, data) {
     .addTo(window.weatherMap)
     .bindPopup(popupContent)
     .openPopup();
-}
-
-function updateWeatherOverlay(layer) {
-  currentOverlay = layer;
-  if (!window.weatherMap) return;
-
-  if (window.weatherOverlay) {
-    window.weatherMap.removeLayer(window.weatherOverlay);
-  }
-
-  window.weatherOverlay = L.tileLayer(
-    `https://tile.openweathermap.org/map/${layer}/{z}/{x}/{y}.png?appid=ebb11342bd7e48d0971141239251205`,
-    {
-      maxZoom: 19,
-      opacity: 0.5,
-      attribution: "Weather overlay © OpenWeather",
-    }
-  );
-
-  window.weatherOverlay.addTo(window.weatherMap);
 }
 
 function setupOverlaySelector() {
