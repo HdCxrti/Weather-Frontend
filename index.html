@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Weather Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script defer src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script defer src="script.js"></script>
+
+
+</head>
+
+<body>
+    <div class="dashboard">
+        <div class="search card">
+            <input type="text" id="cityInput" placeholder="Enter city name..."
+                onkeydown="if(event.key === 'Enter') searchCity()" />
+            <button onclick="searchCity()">Search</button>
+            <button id="unitToggle" onclick="toggleUnits()" class="card">Switch to °C</button>
+        </div>
+
+        <div class="main-info card">
+            <h1 id="location">Loading...</h1>
+            <p id="description"></p>
+            <p id="temperature"></p>
+            <p id="details"></p>
+        </div>
+
+        <div class="highlight-grid">
+            <div class="card">
+                <h3>Wind</h3>
+                <p id="wind"></p>
+            </div>
+            <div class="card">
+                <h3>UV Index</h3>
+                <p id="uv"></p>
+            </div>
+            <div class="card">
+                <h3>Sunrise / Sunset</h3>
+                <p id="sun"></p>
+            </div>
+        </div>
+
+        <h2>7-Day Forecast</h2>
+        <div class="forecast-grid" id="forecast"></div>
+
+        <button id="resetLocation" class="card">📍 Use My Location</button>
+
+        <div class="card">
+            <label for="overlaySelect" style="margin-bottom: 10px;">Weather Overlay:</label>
+            <select id="overlaySelect">
+                <option value="temp_new">Temperature</option>
+                <option value="clouds_new">Clouds</option>
+                <option value="precipitation_new">Precipitation</option>
+                <option value="wind_new">Wind</option>
+            </select>
+        </div>
+
+        <div class="card">
+            <h3>Weather Map</h3>
+            <div id="weatherMap" class="map-placeholder"></div>
+        </div>
+    </div>
+</body>
+
+</html>
